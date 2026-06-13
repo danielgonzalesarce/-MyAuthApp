@@ -24,7 +24,7 @@ next-auth-app/
 │   │   ├── signin/page.tsx                   # Login (guía: signIn)
 │   │   ├── signin/register/page.tsx
 │   │   ├── layout.tsx
-│   │   ├── page.tsx
+│   │   ├── page.tsx                  # Redirige a /signin o /dashboard
 │   │   └── globals.css
 │   ├── components/
 │   │   ├── LogoutButton.tsx                  # Guía
