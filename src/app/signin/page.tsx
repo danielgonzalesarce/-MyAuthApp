@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import SignInForm from "@/components/SignInForm";
 
 export default async function SignInPage() {

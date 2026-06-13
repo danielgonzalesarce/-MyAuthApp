@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import AppShell from "@/components/AppShell";
 
 export default async function MainLayout({
@@ -11,7 +11,7 @@ export default async function MainLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/signin");
+    redirect("/signIn");
   }
 
   return <AppShell>{children}</AppShell>;

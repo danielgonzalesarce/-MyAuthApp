@@ -43,15 +43,19 @@ export default function RegisterPage() {
     setLoading(false);
 
     if (signInResult?.error) {
-      setError("Cuenta creada, pero no se pudo iniciar sesión. Inicia sesión manualmente.");
-      router.push("/signin");
+      setError(
+        "Cuenta creada, pero no se pudo iniciar sesión. Inicia sesión manualmente."
+      );
+      router.push("/signIn");
       return;
     }
 
     if (signInResult?.ok) {
       window.location.href = "/dashboard";
     } else if (!signInResult?.error) {
-      setError("Cuenta creada, pero no se pudo iniciar sesión. Inicia sesión manualmente.");
+      setError(
+        "Cuenta creada, pero no se pudo iniciar sesión. Inicia sesión manualmente."
+      );
     }
   };
 
@@ -63,7 +67,7 @@ export default function RegisterPage() {
         <p className="text-center text-sm text-slate-500">
           ¿Ya tienes cuenta?{" "}
           <Link
-            href="/signin"
+            href="/signIn"
             className="font-semibold text-indigo-600 hover:text-indigo-700"
           >
             Iniciar sesión
@@ -75,7 +79,10 @@ export default function RegisterPage() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-slate-700">
+          <label
+            htmlFor="name"
+            className="mb-1.5 block text-sm font-medium text-slate-700"
+          >
             Nombre completo
           </label>
           <input
@@ -90,7 +97,10 @@ export default function RegisterPage() {
         </div>
 
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-slate-700">
+          <label
+            htmlFor="email"
+            className="mb-1.5 block text-sm font-medium text-slate-700"
+          >
             Email
           </label>
           <input
@@ -105,7 +115,10 @@ export default function RegisterPage() {
         </div>
 
         <div>
-          <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-slate-700">
+          <label
+            htmlFor="password"
+            className="mb-1.5 block text-sm font-medium text-slate-700"
+          >
             Contraseña
           </label>
           <input

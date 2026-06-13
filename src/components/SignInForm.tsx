@@ -123,7 +123,7 @@ export default function SignInForm() {
         <p className="text-center text-sm text-slate-500">
           ¿No tienes cuenta?{" "}
           <Link
-            href="/signin/register"
+            href="/signIn/register"
             className="font-semibold text-indigo-600 hover:text-indigo-700"
           >
             Crear cuenta

@@ -64,7 +64,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <button
-            onClick={() => signOut({ callbackUrl: "/signin" })}
+            onClick={() => signOut({ callbackUrl: "/signIn" })}
             className="sidebar-link w-full text-red-500 hover:bg-red-50 hover:text-red-600"
           >
             <FiLogOut className="text-lg" />
