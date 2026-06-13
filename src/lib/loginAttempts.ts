@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { getDataDir } from "@/lib/dataDir";
 
 interface AttemptRecord {
   count: number;
@@ -9,7 +10,7 @@ interface AttemptRecord {
 export const MAX_ATTEMPTS = 5;
 const LOCK_DURATION_MS = 15 * 60 * 1000;
 
-const ATTEMPTS_FILE = path.join(process.cwd(), "data", "login-attempts.json");
+const ATTEMPTS_FILE = path.join(getDataDir(), "login-attempts.json");
 
 function ensureDataDir() {
   const dir = path.dirname(ATTEMPTS_FILE);

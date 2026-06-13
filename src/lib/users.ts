@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import bcrypt from "bcrypt";
+import { getDataDir } from "@/lib/dataDir";
 
 export interface User {
   id: string;
@@ -9,7 +10,7 @@ export interface User {
   password: string;
 }
 
-const USERS_FILE = path.join(process.cwd(), "data", "users.json");
+const USERS_FILE = path.join(getDataDir(), "users.json");
 
 function ensureDataDir() {
   const dir = path.dirname(USERS_FILE);
