@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import Image from "next/image";
 import Link from "next/link";
+import LogoutButton from "@/components/LogoutButton";
 import {
   FiArrowLeft,
   FiCheckCircle,
@@ -65,17 +66,19 @@ export default async function ProfilePage() {
             Consulta y gestiona la información de tu sesión.
           </p>
         </div>
-        <Link
-          href="/dashboard"
-          className="inline-flex items-center gap-2 self-start rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
-        >
-          <FiArrowLeft />
-          Volver al dashboard
-        </Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
+          >
+            <FiArrowLeft />
+            Volver al dashboard
+          </Link>
+          <LogoutButton />
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        {/* Tarjeta de identidad */}
         <div className="stat-card flex flex-col items-center text-center lg:col-span-1">
           <div className="relative">
             {session?.user?.image ? (
@@ -111,7 +114,6 @@ export default async function ProfilePage() {
           </span>
         </div>
 
-        {/* Detalles de cuenta */}
         <div className="stat-card lg:col-span-2">
           <div className="mb-6 flex items-center gap-3">
             <div className="rounded-xl bg-indigo-50 p-2.5 text-indigo-600">
@@ -141,7 +143,6 @@ export default async function ProfilePage() {
         </div>
       </div>
 
-      {/* Seguridad */}
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="stat-card">
           <div className="mb-4 flex items-center gap-3">

@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import Link from "next/link";
+import LogoutButton from "@/components/LogoutButton";
 import { FiArrowRight, FiCheckCircle, FiShield, FiUser } from "react-icons/fi";
 
 export default async function DashboardPage() {
@@ -30,14 +31,17 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-8">
-      <div>
-        <p className="text-sm font-medium text-indigo-600">Dashboard</p>
-        <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900">
-          Hola, {firstName}
-        </h1>
-        <p className="mt-2 text-slate-500">
-          Bienvenido a tu panel. Tu sesión está activa y verificada.
-        </p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <p className="text-sm font-medium text-indigo-600">Dashboard</p>
+          <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900">
+            Hola, {firstName}
+          </h1>
+          <p className="mt-2 text-slate-500">
+            Bienvenido a tu panel. Tu sesión está activa y verificada.
+          </p>
+        </div>
+        <LogoutButton />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">

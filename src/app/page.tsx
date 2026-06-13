@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -36,7 +36,7 @@ export default async function Home() {
         <div className="flex flex-col items-center gap-4 text-center">
           <p className="text-slate-600">No has iniciado sesión.</p>
           <Link
-            href="/signIn"
+            href="/signin"
             className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
           >
             Iniciar sesión

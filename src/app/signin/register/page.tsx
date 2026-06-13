@@ -46,7 +46,7 @@ export default function RegisterPage() {
       setError(
         "Cuenta creada, pero no se pudo iniciar sesión. Inicia sesión manualmente."
       );
-      router.push("/signIn");
+      router.push("/signin");
       return;
     }
 
@@ -67,7 +67,7 @@ export default function RegisterPage() {
         <p className="text-center text-sm text-slate-500">
           ¿Ya tienes cuenta?{" "}
           <Link
-            href="/signIn"
+            href="/signin"
             className="font-semibold text-indigo-600 hover:text-indigo-700"
           >
             Iniciar sesión

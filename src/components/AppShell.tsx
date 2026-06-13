@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { FiGrid, FiLogOut, FiUser } from "react-icons/fi";
+import { FiGrid, FiUser } from "react-icons/fi";
+import LogoutButton from "@/components/LogoutButton";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: FiGrid },
@@ -17,7 +18,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen bg-[#f4f6fb]">
-      {/* Sidebar desktop */}
       <aside className="hidden w-64 flex-col border-r border-slate-200/80 bg-white lg:flex">
         <div className="flex h-16 items-center gap-3 border-b border-slate-100 px-6">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 text-sm font-bold text-white shadow-md shadow-indigo-200">
@@ -63,19 +63,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               </p>
             </div>
           </div>
-          <button
-            onClick={() => signOut({ callbackUrl: "/signIn" })}
-            className="sidebar-link w-full text-red-500 hover:bg-red-50 hover:text-red-600"
-          >
-            <FiLogOut className="text-lg" />
-            Cerrar sesión
-          </button>
+          <LogoutButton className="w-full" />
         </div>
       </aside>
 
-      {/* Contenido principal */}
       <div className="flex flex-1 flex-col">
-        {/* Topbar mobile */}
         <header className="flex h-16 items-center justify-between border-b border-slate-200/80 bg-white px-4 lg:hidden">
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-xs font-bold text-white">
