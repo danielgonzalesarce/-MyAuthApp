@@ -49,7 +49,9 @@ export default function RegisterPage() {
     }
 
     if (signInResult?.ok) {
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
+    } else if (!signInResult?.error) {
+      setError("Cuenta creada, pero no se pudo iniciar sesión. Inicia sesión manualmente.");
     }
   };
 

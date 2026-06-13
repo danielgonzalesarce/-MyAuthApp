@@ -1,22 +1,40 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import AuthLayout from "@/components/AuthLayout";
 
 const MAX_ATTEMPTS = 5;
 
+const OAUTH_ERRORS: Record<string, string> = {
+  OAuthSignin: "Error al conectar con el proveedor. Revisa las variables de entorno.",
+  OAuthCallback: "Error en el callback OAuth. Verifica las URLs y el Client Secret en Google/GitHub.",
+  OAuthCreateAccount: "No se pudo crear la cuenta con el proveedor OAuth.",
+  Callback: "Error en el callback de autenticación.",
+  AccessDenied: "Acceso denegado. No autorizaste la aplicación.",
+  Configuration: "Error de configuración de NextAuth. Revisa NEXTAUTH_URL y NEXTAUTH_SECRET en Vercel.",
+  CredentialsSignin: "Credenciales incorrectas.",
+  default: "Error al iniciar sesión. Intenta de nuevo.",
+};
+
 export default function SignInForm() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
   const [isLocked, setIsLocked] = useState(false);
+
+  useEffect(() => {
+    const oauthError = searchParams.get("error");
+    if (oauthError) {
+      setError(OAUTH_ERRORS[oauthError] ?? OAUTH_ERRORS.default);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     async function checkAttempts() {
@@ -89,7 +107,9 @@ export default function SignInForm() {
     }
 
     if (signInResult?.ok) {
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
+    } else if (!signInResult?.error) {
+      setError("No se pudo iniciar sesión. Intenta de nuevo.");
     }
   }
 
